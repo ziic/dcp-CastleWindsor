@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dcp.CastleWindsor", "Source\dcp.CastleWindsor\dcp.CastleWindsor.csproj", "{6179F8AB-7E6E-46ED-B3D7-C0CFC9A7FDF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dcp.CastleWindsor.Tests", "UnitTests\dcp.CastleWindsor.Tests\dcp.CastleWindsor.Tests.csproj", "{B2480817-FB43-4DF5-98B4-5C37D60C112C}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs40
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Source\\dcp.CastleWindsor\\dcp.CastleWindsor.csproj
+		SccProjectName1 = Source/dcp.CastleWindsor
+		SccLocalPath1 = Source\\dcp.CastleWindsor
+		SccProjectUniqueName2 = UnitTests\\dcp.CastleWindsor.Tests\\dcp.CastleWindsor.Tests.csproj
+		SccProjectName2 = UnitTests/dcp.CastleWindsor.Tests
+		SccLocalPath2 = UnitTests\\dcp.CastleWindsor.Tests
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6179F8AB-7E6E-46ED-B3D7-C0CFC9A7FDF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6179F8AB-7E6E-46ED-B3D7-C0CFC9A7FDF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6179F8AB-7E6E-46ED-B3D7-C0CFC9A7FDF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6179F8AB-7E6E-46ED-B3D7-C0CFC9A7FDF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2480817-FB43-4DF5-98B4-5C37D60C112C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2480817-FB43-4DF5-98B4-5C37D60C112C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2480817-FB43-4DF5-98B4-5C37D60C112C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2480817-FB43-4DF5-98B4-5C37D60C112C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<castle>
+  <components>
+    <component
+      id="answerProvider"
+      service="dcp.CastleWindsor.Tests.IAnswerProvider, dcp.CastleWindsor.Tests"
+      type="dcp.CastleWindsor.Tests.AnswerProvider, dcp.CastleWindsor.Tests"
+      >
+      <parameters>
+        <theAnswer>#{AppSetting.theAnswer}</theAnswer>
+        <conn>#{CnnStr.conn}</conn>
+      </parameters>
+    </component>
+  </components>
+</castle>
