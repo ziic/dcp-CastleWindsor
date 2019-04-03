@@ -1,20 +1,4 @@
-﻿// Copyright 2004-2009 Castle Project - http://www.castleproject.org/
-// 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-// 
-//     http://www.apache.org/licenses/LICENSE-2.0
-// 
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-// This code is based upon Castle Windsor 1.0.3
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Configuration;
@@ -38,7 +22,7 @@ namespace dcp.CastleWindsor
         private readonly Stack resourceStack = new Stack();
         private readonly Hashtable nodeProcessors = new Hashtable();
         private readonly IXmlNodeProcessor defaultElementProcessor;
-        private IResourceSubSystem resourceSubSystem;
+        private readonly IResourceSubSystem resourceSubSystem;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultXmlProcessorEngine"/> class.
@@ -109,19 +93,19 @@ namespace dcp.CastleWindsor
         private IXmlNodeProcessor GetProcessor(XmlNode node)
         {
             IXmlNodeProcessor processor = null;
-            IDictionary processors = nodeProcessors[node.NodeType] as IDictionary;
+            var processors = nodeProcessors[node.NodeType] as IDictionary;
 
-            if (processors != null)
+            if (processors == null)
+                return null;
+
+            processor = processors[node.Name] as IXmlNodeProcessor;
+
+            // sometimes nodes with the same name will not accept a processor
+            if (processor == null || !processor.Accept(node))
             {
-                processor = processors[node.Name] as IXmlNodeProcessor;
-
-                // sometimes nodes with the same name will not accept a processor
-                if (processor == null || !processor.Accept(node))
+                if (node.NodeType == XmlNodeType.Element)
                 {
-                    if (node.NodeType == XmlNodeType.Element)
-                    {
-                        processor = defaultElementProcessor;
-                    }
+                    processor = defaultElementProcessor;
                 }
             }
 
@@ -135,7 +119,7 @@ namespace dcp.CastleWindsor
                 nodeProcessors[type] = new Hashtable();
             }
 
-            IDictionary typeProcessors = (IDictionary)nodeProcessors[type];
+            var typeProcessors = (IDictionary)nodeProcessors[type];
 
             if (typeProcessors.Contains(processor.Name))
             {
@@ -176,7 +160,7 @@ namespace dcp.CastleWindsor
 
         public IResource GetResource(String uri)
         {
-            IResource resource = resourceStack.Count > 0 ? resourceStack.Peek() as IResource : null;
+            var resource = resourceStack.Count > 0 ? resourceStack.Peek() as IResource : null;
 
             if (uri.IndexOf(Uri.SchemeDelimiter) != -1)
             {
@@ -196,7 +180,7 @@ namespace dcp.CastleWindsor
             properties[content.Name] = content;
         }
 
-        public bool HasProperty(String name)
+        public bool HasProperty(string name)
         {
             var match = appSettingPropertyRegex.Match(name);
             if (match.Success)
@@ -253,8 +237,8 @@ namespace dcp.CastleWindsor
                 }
             }
 
-            XmlElement prop = properties[key] as XmlElement;
-            return prop == null ? null : prop.CloneNode(true) as XmlElement;
+            var prop = properties[key] as XmlElement;
+            return prop?.CloneNode(true) as XmlElement;
         }
 
         private void AddEnvNameAsFlag(string environmentName)

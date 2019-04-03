@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>    
+    <projectUrl>https://github.com/ziic/dcp-CastleWindsor</projectUrl>    
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Upgraded to Castle Windsor 5.0.0, .net framework 4.7.2</releaseNotes>
+    <copyright>$copyright$</copyright>
+    <tags>windsor configuration appSettings connectionStrings</tags>
+  </metadata>
+</package>

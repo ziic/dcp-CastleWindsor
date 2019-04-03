@@ -1,20 +1,4 @@
-﻿// Copyright 2004-2009 Castle Project - http://www.castleproject.org/
-// 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-// 
-//     http://www.apache.org/licenses/LICENSE-2.0
-// 
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-// This code is based upon Castle Windsor 1.0.3
-
-using System;
+﻿using System;
 using System.Xml;
 using Castle.Core.Resource;
 using Castle.MicroKernel.SubSystems.Resource;
@@ -24,9 +8,9 @@ using Castle.Windsor.Configuration.Interpreters.XmlProcessor.ElementProcessors;
 
 namespace dcp.CastleWindsor
 {
-    public class XmlProcessor
+    public sealed class XmlProcessor
     {
-        private IXmlProcessorEngine engine;
+        private readonly IXmlProcessorEngine engine;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="XmlProcessor"/> class.
@@ -56,7 +40,7 @@ namespace dcp.CastleWindsor
             RegisterProcessors();
         }
 
-        protected virtual void RegisterProcessors()
+        private void RegisterProcessors()
         {
             AddElementProcessor(typeof(IfElementProcessor));
             AddElementProcessor(typeof(DefineElementProcessor));
@@ -72,7 +56,7 @@ namespace dcp.CastleWindsor
             AddElementProcessor(typeof(EvalProcessingInstructionProcessor));
         }
 
-        protected void AddElementProcessor(Type t)
+        private void AddElementProcessor(Type t)
         {
             engine.AddNodeProcessor(t);
         }
@@ -96,7 +80,7 @@ namespace dcp.CastleWindsor
             }
             catch (Exception ex)
             {
-                String message = String.Format("Error processing node {0}, inner content {1}", node.Name, node.InnerXml);
+                var message = $"Error processing node {node.Name}, inner content {node.InnerXml}";
 
                 throw new ConfigurationProcessingException(message, ex);
             }
@@ -108,7 +92,7 @@ namespace dcp.CastleWindsor
             {
                 using (resource)
                 {
-                    XmlDocument doc = new XmlDocument();
+                    var doc = new XmlDocument();
                     using (var stream = resource.GetStreamReader())
                     {
                         doc.Load(stream);
@@ -116,7 +100,7 @@ namespace dcp.CastleWindsor
 
                     engine.PushResource(resource);
 
-                    XmlNode element = Process(doc.DocumentElement);
+                    var element = Process(doc.DocumentElement);
 
                     engine.PopResource();
 
@@ -129,7 +113,7 @@ namespace dcp.CastleWindsor
             }
             catch (Exception ex)
             {
-                String message = String.Format("Error processing node resource {0}", resource);
+                var message = $"Error processing node resource {resource}";
 
                 throw new ConfigurationProcessingException(message, ex);
             }

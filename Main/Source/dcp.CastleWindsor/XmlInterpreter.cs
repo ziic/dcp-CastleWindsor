@@ -17,7 +17,7 @@ namespace dcp.CastleWindsor
         public override void ProcessResource(IResource source, IConfigurationStore store, IKernel kernel)
         {
             var processor
-                 = (kernel == null)
+                 = kernel == null
                  ? new XmlProcessor(EnvironmentName)
                  : new XmlProcessor(
                      EnvironmentName,

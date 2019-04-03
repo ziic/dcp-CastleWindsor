@@ -1,17 +1,3 @@
-// Copyright 2004-2009 Castle Project - http://www.castleproject.org/
-// 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-// 
-//     http://www.apache.org/licenses/LICENSE-2.0
-// 
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 using NUnit.Framework;
 
 namespace dcp.CastleWindsor.Tests
@@ -52,23 +38,23 @@ namespace dcp.CastleWindsor.Tests
 
     public class AnswerProvider : IAnswerProvider
     {
-        private readonly string _theAnswer;
-        private readonly string _conn;
+        private readonly string theAnswer;
+        private readonly string conn;
 
         public AnswerProvider(string theAnswer, string conn)
         {
-            _theAnswer = theAnswer;
-            _conn = conn;
+            this.theAnswer = theAnswer;
+            this.conn = conn;
         }
 
         public string GetAnswer()
         {
-            return _theAnswer;
+            return theAnswer;
         }
 
         public string GetConnectionString()
         {
-            return _conn;
+            return conn;
         }
     }
 

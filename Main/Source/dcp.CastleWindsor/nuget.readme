@@ -1,0 +1,1 @@
+NuGet.exe pack dcp.CastleWindsor.csproj -IncludeReferencedProjects -properties Configuration=Release -symbols
